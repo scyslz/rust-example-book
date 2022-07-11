@@ -1,0 +1,18 @@
+[package]
+name = "myredis"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[dependencies]
+tokio = { version = "1", features = ["full"] }
+mini-redis = "0.4"
+tokio-stream = "0.1"
+[[example]]
+name = "module01"
+path = "examples/module01/module01.rs"
+[[example]]
+name = "module02"
+path = "examples/module01/module02.rs"
+[profile.dev]
+panic = "unwind"
