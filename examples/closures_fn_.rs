@@ -39,13 +39,14 @@ fn fun_function() {
     let mut obj1 = MyStruct::new("Hello", 15);
     let obj2 = MyStruct::new("More Text", 10);
     // obj1 is borrowed by the closure immutably.
-    let closure2 = |x: &MyStruct| x.get_number() + obj1.get_number();
-    assert_eq!(closure2(&obj2), 25);
+    let closure = |x: &MyStruct| x.get_number() + obj1.get_number();
+    assert_eq!(closure(&obj2), 25);
+    assert_eq!(closure(&obj1), 30);
     // We can borrow obj1 again immutably...
     assert_eq!(obj1.get_number(), 15);
-    // But we can't borrow it mutably.
-    obj1.inc_number();
-    // closure2(&obj1);
+
+    // obj1.inc_number();
+    // TODO  But we can't borrow it mutably.
 }
 
 fn fun_mut_function() {
@@ -59,9 +60,9 @@ fn fun_mut_function() {
     assert_eq!(closure3(&obj2), 26);
     assert_eq!(closure3(&obj2), 27);
     assert_eq!(closure3(&obj2), 28);
-    // We can't borrow obj1 mutably or immutably
     //     assert_eq!(obj1.get_number(), 18);   // ERROR
     //     obj1.inc_number();
+    // TODO We can't borrow obj1 mutably or immutably
 }
 
 fn main() {
